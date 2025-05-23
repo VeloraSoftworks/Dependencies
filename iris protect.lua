@@ -8,7 +8,7 @@ local CheckCaller = checkcaller or check_caller;
 local GetRawMT = get_raw_metatable or getrawmetatable or getraw_metatable;
 
 if not (HookFunction and GetNCMethod and CheckCaller and Connections) then
-    warn("[Horizon]: Your executor does not support advanced instance protection. Some features (e.g., Highlight ESP) may not function correctly.")
+    warn("[Horizon]: Your executor does not support advanced instance protection. Some features (e.g., Highlight ESP) may be detected.")
     getgenv().ProtectInstance = function() end
     getgenv().UnprotectInstance = function() end
     return
