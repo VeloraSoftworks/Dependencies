@@ -9,6 +9,9 @@ local GetRawMT = get_raw_metatable or getrawmetatable or getraw_metatable;
 
 if not (HookFunction and GetNCMethod and CheckCaller and Connections) then
     warn("[Horizon]: Your executor does not support advanced instance protection. Some features (e.g., Highlight ESP) may not function correctly.")
+    getgenv().ProtectInstance = function() end
+    getgenv().UnprotectInstance = function() end
+    return
 end
 
 local function HookMetaMethod(Object, MetaMethod, Function)
@@ -258,6 +261,6 @@ end)
 getgenv().ProtectInstance = function(NewInstance)
     table.insert(ProtectedInstances, NewInstance)
 end
-getgenv().UnProtectInstance = function(NewInstance)
+getgenv().UnprotectInstance = function(NewInstance)
     table.remove(ProtectedInstances, table.find(ProtectedInstances, NewInstance));
 end
