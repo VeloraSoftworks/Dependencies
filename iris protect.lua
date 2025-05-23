@@ -7,7 +7,9 @@ local GetNCMethod = getnamecallmethod or get_namecall_method;
 local CheckCaller = checkcaller or check_caller;
 local GetRawMT = get_raw_metatable or getrawmetatable or getraw_metatable;
 
-assert(HookFunction  and GetNCMethod and CheckCaller and Connections, "Exploit is not supported");
+if not (HookFunction and GetNCMethod and CheckCaller and Connections) then
+    warn("[Horizon]: Your executor does not support advanced instance protection. Some features (e.g., Highlight ESP) may not function correctly.")
+end
 
 local function HookMetaMethod(Object, MetaMethod, Function)
     return HookFunction(assert(GetRawMT(Object)[MetaMethod], "Invalid Method"), Function);
