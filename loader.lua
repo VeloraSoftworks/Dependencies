@@ -1,4 +1,4 @@
-local Velora = {}
+local Velora = Velora or {}
 local Links = {
     Horizon = '';
     IrisProtect = '';
@@ -7,7 +7,9 @@ local Links = {
 
 for k, v in pairs(Links) do
     task.spawn(function()
-        Velora[k] = loadstring(game:HttpGet(v))()
+        if not Velor[k] then
+            Velora[k] = loadstring(game:HttpGet(v))()
+        end
     end)
 end
 
